@@ -13,11 +13,12 @@ export interface Chats {
   id: string;
   name: string;
 }
-const initialChats: Chats[] = [{
-  id: "1",
-  name: 'chat',
-}]
-
+const initialChats: Chats[] = [
+  {
+    id: '1',
+    name: 'chat',
+  },
+];
 
 export const App: FC = () => {
   const [chatList, setChatList] = useState<Chats[]>(initialChats);
@@ -34,25 +35,40 @@ export const App: FC = () => {
           toggleTheme,
         }}
       >
-        < BrowserRouter >
-
+        <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Header />} />
+            <Route path="/" element={<Header />} />
 
-            <Route path='/Chats'>
-              <Route index element={<ChatList chatList={chatList} onAddChat={setChatList} />} />
-              <Route path=':chatId' element={<Chats />} />
+            <Route path="/Chats">
+              <Route
+                index
+                element={
+                  <ChatList chatList={chatList} onAddChat={setChatList} />
+                }
+              />
+              <Route path=":chatId" element={<Chats />} />
             </Route>
-            <Route path='/Profile' element={<Profile />} />
-            <Route path='*' element={<div className="ErrorPage">
-              <h2>Page not found.</h2>
-              <h4 className="ErrorPage__message">Our apologies, this is almost certainly not the page you were looking for.</h4>
-              <h4 className="ErrorPage__secondaryMessage">Please try the search tool, above, or visit our  <Link to="/">Home Page</Link>.</h4>
-              <a className="Link" href="/"></a>
-            </div>} />
+            <Route path="/Profile" element={<Profile />} />
+            <Route
+              path="*"
+              element={
+                <div className="ErrorPage">
+                  <h2>Page not found.</h2>
+                  <h4 className="ErrorPage__message">
+                    Our apologies, this is almost certainly not the page you
+                    were looking for.
+                  </h4>
+                  <h4 className="ErrorPage__secondaryMessage">
+                    Please try the search tool, above, or visit our{' '}
+                    <Link to="/">Home Page</Link>.
+                  </h4>
+                  <a className="Link" href="/"></a>
+                </div>
+              }
+            />
           </Routes>
-        </BrowserRouter >
+        </BrowserRouter>
       </ThemeContext.Provider>
-    </Provider >
-  )
+    </Provider>
+  );
 };
