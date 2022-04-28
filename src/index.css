@@ -73,3 +73,10 @@ li::before {
   height: 3px;
   margin: 0px 4px 2px 2px;
 }
+.delete__chat {
+  background-color: #b0f3b2;
+  margin-left: 15px;
+  width: 40px;
+  border-radius: 25px;
+  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 10%), 0 6px 5px 0 rgb(0 0 0 / 26%);
+}
