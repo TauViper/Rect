@@ -1,24 +1,43 @@
-import React, { useState, FC } from 'react';
-import { Button } from '../Button/Button';
-import { Message } from '../Message/Message';
 
-interface FormProps {
-    addMessages: (value: string) => void,
-    setValue?: React.Dispatch<React.SetStateAction<string>>
-    preventDefault?: () => void
-}
-export const Form: FC<FormProps> = ({ addMessages }) => {
-    const [buttonName] = useState<string>('Send')
-    const [value, setValue] = useState<string>('');
+import React, { useState, FC, memo } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { ThunkDispatch } from 'redux-thunk';
+import { AUTHOR } from '../../../constants';
+import { addMessageWithReply } from '../../../store/chats/actions';
+import { ChatsState } from '../../../store/chats/reducer';
+import { AddMessage } from '../../../store/chats/types';
+import { Button } from '../Button/Button';
+
+
+
+export const Form: FC = memo(() => {
+    const [value, setValue] = useState('');
+    const { chatId } = useParams();
+    const dispatch =
+        useDispatch<ThunkDispatch<ChatsState, void, ReturnType<AddMessage>>>();
+
     const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        addMessages(value)
-        setValue('')
+
+        if (chatId && value) {
+            dispatch(
+                addMessageWithReply(chatId, { text: value, author: AUTHOR.user })
+            );
+        }
+        setValue('');
     };
+
     return (
         <form onSubmit={handleSubmitForm}>
-            <Message value={value} setValue={setValue} />
-            <Button name={buttonName} />
+            <input
+                className='input'
+                autoFocus placeholder='Введите текст'
+                type="text"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+            />
+            <Button />
         </form>
     );
-};
+});

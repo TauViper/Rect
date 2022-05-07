@@ -1,14 +1,14 @@
 import React from 'react';
 
-interface WithClassesProps {
-  classes: string;
-}
+// interface WithClassesProps {
+//   classes: string;
+// }
 export function WithClasses<T>(
-  Component: React.ComponentType<T & WithClassesProps>
+  Component: React.ComponentType<T>
 ) {
-  return function Wrapper(props: T & WithClassesProps) {
+  return function Wrapper(props: T) {
     return (
-      <div className={props.classes}>
+      <div>
         <Component {...props} />
       </div>
     );
