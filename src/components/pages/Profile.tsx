@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SendIcon from '@mui/icons-material/Send';
 import ButtonUI from '@mui/material/Button';
 import { ThemeContext } from '../../store/utils/ThemeContext';
-import { changeName, toggleProfile } from '../../store/profile/actions';
+import { changeName, toggleProfile } from '../../store/profile/slice';
 import { selectName, selectVisible } from '../../store/profile/selectors';
 
 export const Profile: FC = () => {

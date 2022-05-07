@@ -17,6 +17,7 @@ const profileSlice = createSlice({
     toggleProfile: (state) => {
       state.visible = !state.visible;
     },
+
     changeName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },

@@ -9,16 +9,12 @@ import { Header } from '../Header/Header';
 
 export const Chats: FC = () => {
     const { chatId } = useParams();
-
     const MessageListWithClass = WithClasses(MessageList);
-
     const chats = useSelector(selectChats, shallowEqual);
     const chatList = useSelector(selectChatList, shallowEqual);
-
     if (!chatList.find((chat) => chat.name === chatId)) {
         return <Navigate replace to="/chats" />;
     }
-
     return (<>
         <Header />
         <main>

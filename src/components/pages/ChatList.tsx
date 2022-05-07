@@ -9,17 +9,13 @@ import { selectChatList } from '../../store/chats/selectors';
 
 export const ChatList: FC = () => {
     const [name, setName] = useState('');
-
     const dispatch = useDispatch();
-
     const chatList = useSelector(
         selectChatList,
         (prev, next) => prev.length === next.length
     );
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         if (name) {
             dispatch(addChat(name));
             setName('');

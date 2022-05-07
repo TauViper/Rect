@@ -5,12 +5,6 @@ import { Profile } from "./pages/Profile"
 import React, { FC } from 'react';
 import { Header } from "./Header/Header";
 
-
-
-
-
-
-
 export const AppRouter: FC = () => (
     < BrowserRouter >
         <Routes>
